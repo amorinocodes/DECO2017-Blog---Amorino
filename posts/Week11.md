@@ -1,5 +1,5 @@
 ---
-title: "What peer testing actually tested"
+title: "Testing from the couch"
 date: 2026-04-06
 author: Amorino Toongart
 summary: Before testing, I had to define what done looked like. The session validated the three-tab navigation and revealed an underspecified requirement about feed disambiguation. This post also sets out the formal evaluation plan.
@@ -18,6 +18,8 @@ Not all features were ready. The Unsplash images are not loading in the deployed
 
 This is basically backwards design in practice. If you do not define the evidence you are looking for before running the test, any feedback is potentially valid and you cannot prioritise it. The risk of informal testing without that framing is that you walk away with a list of things people noticed rather than an answer to a specific question.
 
+![Profile page with recipe feed rendering correctly](./images/week11-profile-feed.png)
+
 ## What the testing confirmed and what it revealed
 
 The good news is that the navigation model held up. All participants understood within roughly two minutes what the app was for and how to navigate between the feed and the map. This validates the three-tab bottom nav decision from the earlier wireframe work. A more complex navigation structure would not have served users who are seeing the interface for the first time.
@@ -25,6 +27,8 @@ The good news is that the navigation model held up. All participants understood 
 The feedback that came up consistently was about card differentiation in the mixed feed. When recipe cards and ingredient-find cards appear in the same grid, some testers were not immediately sure which type they were looking at. The feed toggle exists, but in practice the grid can surface mixed content in certain states, and the visual distinction between card types was not strong enough.
 
 This is a functional requirement I had underspecified. I had assumed the toggle was sufficient disambiguation. The testing showed that card-level visual differentiation is also necessary, not just a stylistic preference but a genuine requirement for the feed to be usable when content types mix.
+
+![Festive collections banner on the feed showing seasonal recipes](./images/week11-festive-collections.png)
 
 ## Formal evaluation plan
 
