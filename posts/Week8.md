@@ -12,11 +12,13 @@ tags:
 
 ## Wireframes as scope decisions
 
-Wireframing for SEAblings this week forced me to make three decisions I had been leaving implicit during planning. Each one turned out to be as much about scope as about layout. Choosing one pattern over another meant committing to a particular functional priority.
+This was the first proper build sprint. The group (me, Natasha, and Patricia) were working across the data model and the wireframe set simultaneously, which meant the two had to stay in sync. A wireframe that assumed a data structure the ERD did not support would create rework, so there was a lot of back-and-forth as both took shape.
+
+My side of that forced me to make three decisions I had been leaving implicit during planning. Each one turned out to be as much about scope as about layout. Choosing one pattern over another meant committing to a particular functional priority.
 
 ## Decision one: grid versus linear feed
 
-The recipe and ingredient feed could be a Pinterest-style grid or a linear list. A linear list gives each item more space, more metadata, and a clearer reading order. A grid delivers more content per scroll and prioritises visual browsing. The trade-off is information density against context.
+For my decision I wanted the recipe and ingredient feed to be a Pinterest-style grid or a linear list. A linear list gives each item more space, more metadata, and a clearer reading order. A grid delivers more content per scroll and prioritises visual browsing. The trade-off is information density against context.
 
 I chose the grid for two reasons that come directly from the requirements. First, SEAblings users are primarily browsing to discover something: a dish they want to make, or an ingredient source they did not know existed. They are not reading items sequentially, so a grid suits that better. Second, the feed has a toggle between recipe mode and ingredient-find mode, and both content types have a strong visual component. A grid handles them consistently without requiring a layout shift between modes. The cost is that metadata needs to be highly compressed inside each card, which pushes the information hierarchy harder than a list would.
 
@@ -48,4 +50,14 @@ The recipe detail screen needed to link from an ingredient in a recipe to the ma
 
 This was the first point in the project where the wireframe and the data model had to be designed in parallel rather than sequentially.
 
-![GitHub project board showing tickets assigned across the group](./images/week8-project-board.png)
+## Project board setup
+
+I also set up the GitHub project board this week with tickets distributed across Amorino, Natasha, and Patricia. Having the work itemised early meant the sprint had clear ownership rather than informal handoffs, which matters when the wireframe and ERD are interdependent. A ticket that blocks another one is easier to see in a board than in a chat thread.
+
+![GitHub project board showing tickets assigned across the group](./assets/images/Github%20project%20ticketing%20system.png)
+
+## Early visual direction
+
+Alongside the structural work, I started putting together some visual references for the app's aesthetic direction. Nothing committed at this stage — more of a moodboard to get a feel for the palette and tone before any UI work begins. The direction I was drawn to was warm and tactile, closer to a Southeast Asian market or home kitchen than a clean SaaS product.
+
+![Brand identity inspiration and early visual direction for SEAblings](./assets/images/Images%20of%20Brand%20idenity%20inspiration.png)
