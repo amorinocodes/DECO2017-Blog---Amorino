@@ -1,93 +1,39 @@
 ---
-title: Amorino's Web Journey
+title: "Revisiting the requirements: what changed and what held"
 date: 2026-04-16
 author: Amorino Toongart
-summary: Quick Dive into my Web journey this semsester
+summary: A final-semester look back at the initial requirements analysis, which assumptions proved correct, which needed revision, and what the process of building revealed about what the application actually needed to do.
 tags:
   - DECO2017
+  - SEAblings
+  - Requirements
   - WebDesign
-  - Planning
 ---
-## Interpreting the Brief
 
-The BlaBla Corp brief focuses on creating a “community hub” where users with shared interests can connect through content and interaction. Rather than simply building a generic social platform, the emphasis is on **what information is shared and how the experience keeps users engaged**.
+## What I thought the requirements were
 
-This means the success of the application is not just based on features, but on how well it supports meaningful interaction within a specific community.
+The brief started as an ambiguity problem. "Community hub" is a category, not a specification, and I spent the first weeks working out what the application actually needed to do for a specific community before committing to anything. The core requirements I landed on were: a recipe browser, a community-maintained ingredient map, a posting mechanism for contributing finds, and persistent user profiles. The ingredient map was the load-bearing feature. Without it, SEAblings was just another recipe platform.
 
-## Initial Direction
+At that stage the requirements looked relatively clean and stable. Looking back from the other end of the semester, I can see where that initial analysis was right, where it was incomplete, and where building the application revealed requirements I had not anticipated.
 
-At this stage, I am exploring building a community hub centred around university societies 
+## What held
 
-This direction is interesting because:
-- It already has an existing community
-- Users have clear motivations to engage
-- I am a involved In a lot of uni society work and community building
+The core functional requirements held. The ingredient map and the recipe browser are genuinely separate needs that serve different users in the same community. Someone sourcing a specific ingredient and someone looking for recipe inspiration are on different journeys, and the two-tab feed structure serves both without requiring a choice between them. The decision to normalise the data model, treating ingredients and locations as separate entities, proved right when the search and filter interactions were implemented. A flat model would have made the ingredient-to-map link from the recipe detail screen unreliable.
 
-However, I am still considering alternatives such as:
-- A community for local areas to promote social gatherings
-- A broader lifestyle hub (more users, but less depth)
+The three-tab navigation model also held. Informal user testing confirmed that first-time users could orient themselves within two minutes. The tab structure kept the mental model simple enough to be immediately comprehensible, which is what the brief's engagement requirement actually depends on.
 
-The trade-off here is between **depth vs scale**. A niche community may lead to stronger engagement, while a broader one may struggle to maintain meaningful interaction.
+## What the build revealed that the brief did not
 
-## Core Functional Requirements
+Three requirements emerged during development that were not visible in the initial analysis.
 
-Instead of listing features, I focused on what the system *needs to do*:
+The first was ingredient granularity. The brief did not specify what level of detail an "ingredient find" should capture. Building the dummy database made the answer concrete: category-level ingredients (fish sauce, galangal, coconut cream) with brand specificity in the location record description. This distinction has direct interface implications. The submission form needed a controlled ingredient vocabulary rather than a free-text field, which I had not specified in the initial wireframes.
 
-### Essential (Core)
-- Users can create and view posts  
-- Users can interact (like/comment)  
-- Users can view content relevant to their community  
-- Users are identifiable (linked to their account session)  
+The second was the moderation and data accuracy requirement. A community-sourced map of ingredient availability is only useful if the data is reasonably accurate and clearly dated. I had not explicitly specified what happens to stale entries, who can flag them, or how the app communicates the community-sourced nature of the data to users. This is not just a UX consideration. It is an ethical one. The application is directing people to physical locations based on reports. Stale or incorrect location data has real-world costs. The confirmation mechanism and flag mechanism I added to the pin bottom sheet were not in the original wireframes, but they should have been.
 
-These are essential because without them, there is no real “community interaction”.
+The third was the list view as an accessibility requirement. I initially designed the ingredient map as the primary interface, with a list view as a secondary option. Understanding WCAG 2.1's requirements for content that relies solely on spatial or visual interaction made the list view a required alternative, not an optional enhancement. The map is the richer experience; the list is the accessible baseline. Both need to be independently functional.
 
-### Secondary (Optional)
-- Tagging or filtering posts  
-- Saving or bookmarking content  
-- Personalised recommendations  
+## What I would do differently
 
-These improve experience but are not required for a working prototype.
+The most significant gap in the initial requirements analysis was treating the data model as a backend concern to be resolved separately from the interface design. The Week 9 experience, where the normalised data model changed the wireframes, showed that they need to be developed in parallel. The wireframes assumed certain queries were possible that would not have been with the flat model. Getting the data model right earlier would have reduced rework.
 
-A key decision here is to **limit scope early** to ensure the system remains feasible within time constraints.
-
-## Technical Considerations
-
-The required tech stack (MojoJS, SQLite, HTMX) influences how I approach design.
-
-- SQLite suggests structured data → I will likely need tables for users, posts, and interactions  
-- HTMX supports dynamic updates → useful for actions like liking or commenting without full page reloads  
-- MojoJS templates align well with my current blog setup → I can reuse similar templating logic  
-
-Rather than overcomplicating the system, I plan to **keep interactions simple but responsive**.
-
-## Constraints and Risks
-
-Some key constraints include:
-- Performance (must load under 3 seconds)
-- Accessibility (AA compliance)
-- No custom authentication system (handled externally)
-
-A major risk is trying to build too many features early. To avoid this, I will prioritise **core interaction over visual complexity**.
-
-## Evaluation Plan
-
-To evaluate the success of the application, I plan to test:
-
-- **Usability** → Can users easily navigate and interact?
-- **Engagement** → Do users understand what to do on the platform?
-- **Accessibility** → Are text, contrast, and interactions inclusive?
-
-I will likely use:
-- Simple user testing (peers)
-- Observing task completion (e.g. creating a post)
-- Accessibility checkers
-
-## Next Steps
-
-Moving forward, I will:
-- Finalise the community focus
-- Create a basic sitemap or wireframe
-- Start mapping out data (posts, users, interactions)
-
-This will help transition from abstract ideas into a more concrete system design.
-
+The second gap was not specifying moderation from the start. Community-sourced content platforms have moderation requirements that are as important as creation requirements. Treating submission as the primary operation and curation as an optional feature was the wrong framing. Both are load-bearing for the application to function as intended.
