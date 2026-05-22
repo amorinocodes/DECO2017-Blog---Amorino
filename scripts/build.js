@@ -8,6 +8,25 @@ import { format } from "date-fns";
 const POSTS_DIR = "./posts";
 const DIST_DIR = "./dist";
 
+const TAG_EMOJI = {
+  Wireframes: "📐",
+  API: "🔌",
+  Design: "🎨",
+  Data: "🗃️",
+  Planning: "📋",
+  WebDesign: "💻",
+  SEAblings: "🌊",
+  DECO2017: "📚",
+};
+
+function getEmoji(tags = []) {
+  const tagSet = new Set(tags);
+  for (const key of Object.keys(TAG_EMOJI)) {
+    if (tagSet.has(key)) return TAG_EMOJI[key];
+  }
+  return "📝";
+}
+
 /* clean up old distribution */
 fs.rmSync(DIST_DIR, { recursive: true, force: true });
 fs.mkdirSync(DIST_DIR, { recursive: true });
@@ -89,9 +108,10 @@ const postsHtml = posts
       slug: p.slug,
       title: p.title,
       author: p.author,
-      date: format(new Date(p.date), "yyyy-MM-dd"), // Format the date as needed
+      date: format(new Date(p.date), "yyyy-MM-dd"),
       summary: p.summary,
-      tags: tagsHtml, // Replace {{tags}} with the generated tags HTML
+      tags: tagsHtml,
+      emoji: getEmoji(p.tags),
     });
   })
   .join(""); // Combine all <li> items into a single string
