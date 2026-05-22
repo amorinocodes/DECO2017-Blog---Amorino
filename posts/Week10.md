@@ -1,46 +1,37 @@
 ---
-title: APIs, dummy data, and finding the visual identity
+title: "What building the seed database revealed"
 date: 2026-03-30
 author: Amorino Toongart
-summary: What I learned about APIs and external integrations, and how I spent sprint 3 building out the Thai dummy database and starting on the SEAblings visual direction
+summary: Building the Thai dummy data turned out to be a form of requirements testing. Ingredient granularity was a design decision I had left open, and the API dependency issue changed how I think about the map's role in the app.
 tags:
   - DECO2017
-  - WebDesign
   - SEAblings
   - API
-  - Design
+  - Data
 ---
 
-## The deployment and integrations lecture
+## Seed data as requirements testing
 
-Week 10 covered deployment and external integrations, which is the point in the course where the project starts feeling more real. Up until now most of the work has been local, running on localhost with test data. Thinking about how the app actually gets served, and how it talks to external services, added a layer I had not thought much about from the design side.
+The usual reason for building dummy data is to have something to render during development. But building the Thai section of the SEAblings ingredient database this week turned out to be a form of requirements testing. The moment I had to write actual entries (ingredient name, store name, suburb, price range, last confirmed date, description) I had to answer questions the requirements document had left open.
 
-The part of the lecture that was most relevant to our project was the section on APIs. The core idea is that an API is the same HTTP request/response pattern you already know, but the audience is another program rather than a person. For SEAblings, the most obvious candidate for an external integration is the map. Our ingredient finder map relies on coordinates and store lookups, and a maps API is the natural way to power that in a real build.
+The most significant was the question of ingredient granularity. How specific should entries be? Fish sauce is a broad category, but the type and brand matter for Thai cooking. Tiparos Pla Sauce and Megachef fish sauce perform differently in recipes, and a platform that listed them as the same ingredient would not serve cooks who know the difference. At the same time, separating every brand into its own ingredient entry would fragment the map: a single store would generate dozens of pins for products that are functionally related.
 
-The lecture also covered rate limits, caching, and the importance of never committing API keys to the repo. The pattern of storing keys in a config.yml file that is listed in .gitignore, and generating a default config on first startup, is something we will need to set up properly before submission. The note that deleting a key in a later commit does not remove it from earlier commits was a good reminder to be careful from the start rather than trying to clean it up after.
+The decision I settled on was category-level ingredients (fish sauce, oyster sauce, pandan extract) with brand and product specificity held in the description field on the ingredient_location record. This keeps the search and filter experience coherent at the ingredient level while preserving the nuance that community members actually need. The trade-off is that the description field becomes load-bearing. It is not just a label but part of the usefulness of the data. That has implications for the submission form: the description prompt needs to guide users to enter the right kind of detail, not just an optional note.
 
-## What I personally worked on this week
+## The API dependency problem
 
-My main contribution this sprint was completing the Thai section of our dummy database.
+The deployment and integrations lecture this week surfaced a problem I had not thought through carefully: API dependency as a reliability risk. The ingredient map is the most important feature of SEAblings. If the Maps API is unavailable, slow, or rate-limited, the core feature becomes unusable. That is a fragility that needs a design response, not just an implementation workaround.
 
-![Screenshot of the Thai dummy data entries in the SQLite database](./images/week10-dummy-data.png)
+The standard response is graceful degradation: show something useful rather than a broken page. For SEAblings, the useful fallback is the ingredient-location list view that I had already decided needed to exist for accessibility reasons. If the map fails to load, a user can still search for "tamarind paste" and get a list of stores. The list view is not a backup. It is a full alternative interface to the same data.
 
-We needed realistic seed data to work with during development, and an empty database makes it very hard to test anything meaningfully. I built out a set of dummy entries for Thai ingredients and desserts, including things like pandan, tapioca, and glutinous rice, with associated store locations across Sydney suburbs, price ranges, and descriptions written to feel like real community submissions.
+This has an architectural implication. If the list view is genuinely independent of the map, the ingredient data model must be solid enough to drive a search and display result without the map rendering at all. That is a stronger requirement than "the list view exists." It means the list view needs to be designed and built to be fully functional, not just a placeholder behind the map.
 
-The goal was to give the database enough texture that the feed, the map, and the recipe detail screens would all look plausible when rendered with real data instead of placeholder text. It also meant thinking through the ingredient_locations table structure in practice, which confirmed that the structure Natasha documented in her week 8 post holds up when you actually try to fill it with data.
+## What this means for scope
 
-## Starting on the branding and visual direction
+Treating the list view as a required interface rather than an optional fallback adds scope I had not planned for. But it also provides a useful forcing function: if the ingredient data works in a plain search list, the data model is sound. If the list view cannot produce useful results, the map is hiding a data problem rather than solving a requirement.
 
-The other thing I started this week was the visual identity for SEAblings. The wireframes are handed off for the build, so my focus is shifting to what the app actually looks and feels like.
+The festive collections feature, which surfaces seasonal recipes based on upcoming cultural events, is in a different category. It is a meaningful enhancement to the discovery experience but it is not load-bearing for the core use case. A user who wants to cook a specific dish and find the ingredients does not need the festive collections banner. It is an optional feature that should not receive scope priority over getting the core map and list views working correctly.
 
-The design direction I am exploring is warm and grounded, something that feels connected to the food and the communities we are building for rather than generic social platform aesthetics. Colour palette, typography choices, and how the recipe card components render in full colour are all things I am working through now.
+## API security
 
-![Early SEAblings colour palette and typography explorations](./images/week10-branding-direction.png)
-
-I also started on the user profile screen, which is one of the three main tabs in the bottom nav. The profile screen needs to handle both your own posts and your saved ingredient finds, which means it has two content modes, similar to the feed toggle between recipes and ingredient finds.
-
-## Thinking about the map API
-
-One thing that came out of this week's lecture that is directly relevant to our project is how to handle the map integration gracefully. The ingredient map is our core feature, which means if the map API is slow or unavailable, the app feels broken. The error handling section of the lecture was useful here: the principle of a graceful fallback rather than a crash means we should design the map screen to degrade sensibly if the external data does not load, showing a message rather than an empty white screen.
-
-That is something worth designing for explicitly in the next round of mockup work.
+One practical point worth recording: the deployment lecture's guidance about never committing API keys applies from the beginning of the project, not from submission. I set up the config.yml pattern with a gitignored default immediately rather than at the end. Removing sensitive data from git history retroactively is significantly harder than not adding it in the first place.
