@@ -18,7 +18,7 @@ Not all features were ready. The Unsplash images are not loading in the deployed
 
 This is basically backwards design in practice. If you do not define the evidence you are looking for before running the test, any feedback is potentially valid and you cannot prioritise it. The risk of informal testing without that framing is that you walk away with a list of things people noticed rather than an answer to a specific question.
 
-![Profile page with recipe feed rendering correctly](./images/week11-profile-feed.png)
+![Profile page with recipe feed rendering correctly](./assets/images/Profile%20Screen.png)
 
 ## What the testing confirmed and what it revealed
 
@@ -28,7 +28,7 @@ The feedback that came up consistently was about card differentiation in the mix
 
 This is a functional requirement I had underspecified. I had assumed the toggle was sufficient disambiguation. The testing showed that card-level visual differentiation is also necessary, not just a stylistic preference but a genuine requirement for the feed to be usable when content types mix.
 
-![Festive collections banner on the feed showing seasonal recipes](./images/week11-festive-collections.png)
+![Festive collections banner on the feed showing seasonal recipes](./assets/images/Festival%20Screen.png)
 
 ## Formal evaluation plan
 
