@@ -2,7 +2,7 @@
 title: Amorino's Web Journey
 date: 2026-02-16
 author: Amorino Toongart
-summary: Quick Dive into my Web journey this semsester
+summary: Quick dive into my web journey this semester
 tags:
   - DECO2017
   - WebDesign
@@ -10,28 +10,28 @@ tags:
 ---
 ## Interpreting the Brief
 
-The BlaBla Corp brief focuses on creating a "community hub" where users with shared interests can connect through content and interaction. Rather than simply building a generic social platform, the emphasis is on **what information is shared and how the experience keeps users engaged**.
+The BlaBla Corp brief is about building a "community hub" where users with shared interests can connect through content and interaction. Rather than just building a generic social platform, the focus is on **what gets shared and how the experience keeps users engaged**.
 
-This means the success of the application is not just based on features, but on how well it supports meaningful interaction within a specific community.
+That means success isn't just about features — it's about how well the app actually supports interaction within a specific community.
 
 ## Initial Direction
 
-At this stage, I am exploring building a community hub centred around university societies 
+At this stage, I'm exploring building a community hub centred around university societies.
 
-This direction is interesting because:
+I'm drawn to it because:
 - It already has an existing community
 - Users have clear motivations to engage
-- I am a involved In a lot of uni society work and community building
+- I'm already involved in a lot of uni society work and community building
 
-However, I am still considering alternatives such as:
+Still considering some alternatives though:
 - A community for local areas to promote social gatherings
 - A broader lifestyle hub (more users, but less depth)
 
-The trade-off here is between **depth vs scale**. A niche community may lead to stronger engagement, while a broader one may struggle to maintain meaningful interaction.
+The trade-off is **depth vs scale**. A niche community tends to lead to stronger engagement, while a broader one can struggle to maintain anything meaningful.
 
 ## Core Functional Requirements
 
-Instead of listing features, I focused on what the system *needs to do*:
+Instead of just listing features, I focused on what the app actually *needs to do*:
 
 ### Essential (Core)
 - Users can create and view posts  
@@ -39,54 +39,53 @@ Instead of listing features, I focused on what the system *needs to do*:
 - Users can view content relevant to their community  
 - Users are identifiable (linked to their account session)  
 
-These are essential because without them, there is no real "community interaction".
+Without these, there's no real "community interaction" — they're non-negotiable.
 
 ### Secondary (Optional)
 - Tagging or filtering posts  
 - Saving or bookmarking content  
 - Personalised recommendations  
 
-These improve experience but are not required for a working prototype.
+These would improve the experience but aren't needed for a working prototype.
 
-A key decision here is to **limit scope early** to ensure the system remains feasible within time constraints.
+The main call here is to **keep the scope tight early** so it stays manageable within the time constraints.
 
 ## Technical Considerations
 
-The required tech stack (MojoJS, SQLite, HTMX) influences how I approach design.
+The required tech stack (MojoJS, SQLite, HTMX) shapes how I'm approaching the design.
 
-- SQLite suggests structured data → I will likely need tables for users, posts, and interactions  
-- HTMX supports dynamic updates → useful for actions like liking or commenting without full page reloads  
+- SQLite suggests structured data → I'll likely need tables for users, posts, and interactions  
+- HTMX supports dynamic updates → useful for things like liking or commenting without full page reloads  
 - MojoJS templates align well with my current blog setup → I can reuse similar templating logic  
 
-Rather than overcomplicating the system, I plan to **keep interactions simple but responsive**.
+Rather than overcomplicating things, I want to **keep interactions simple but responsive**.
 
 ## Constraints and Risks
 
-Some key constraints include:
+Key constraints:
 - Performance (must load under 3 seconds)
 - Accessibility (AA compliance)
 - No custom authentication system (handled externally)
 
-A major risk is trying to build too many features early. To avoid this, I will prioritise **core interaction over visual complexity**.
+The main risk is feature creep early on. To avoid that, I'm prioritising **core interaction over visual flair**.
 
 ## Evaluation Plan
 
-To evaluate the success of the application, I plan to test:
+To evaluate how the app is going, I'll test:
 
 - **Usability** → Can users easily navigate and interact?
 - **Engagement** → Do users understand what to do on the platform?
 - **Accessibility** → Are text, contrast, and interactions inclusive?
 
-I will likely use:
+I'll probably use:
 - Simple user testing (peers)
 - Observing task completion (e.g. creating a post)
 - Accessibility checkers
 
 ## Next Steps
 
-Moving forward, I will:
 - Finalise the community focus
 - Create a basic sitemap or wireframe
 - Start mapping out data (posts, users, interactions)
 
-This will help transition from abstract ideas into a more concrete system design.
+That should help turn the abstract ideas into something more concrete.
