@@ -2,7 +2,7 @@
 title: "What the data model forced me to rethink"
 date: 2026-03-23
 author: Amorino Toongart
-summary: Separating ingredients from ingredient locations in the ERD revealed a requirement that had been implicit. The app is a database of availability, not a list of finds, and that distinction changed both the scope and the interface design.
+summary: Working from Natasha's finalised ERD revealed a requirement that had been implicit in the wireframes. This week also brought the evaluation plan together and surfaced some privacy decisions the group had not explicitly made yet.
 tags:
   - DECO2017
   - SEAblings
@@ -10,38 +10,44 @@ tags:
   - Wireframes
 ---
 
-## The design problem with a flat model
+## Working from the ERD
 
-The first data model I sketched treated a "find" as a single record: ingredient name, store name, suburb, availability status, and a description. This is intuitive if you think about the app as a submission form. Someone finds pandan at a store, they post it, it shows up on the map as a pin.
+Natasha completed the ERD at the end of last week. Five tables: users, recipes, ingredients, recipe_ingredients, and ingredient_locations. The key structural decision was separating ingredients from their locations so that a single ingredient entity can have multiple store pins, and adding a new store location automatically surfaces in every recipe that uses that ingredient.
 
-The problem appears when you try to query it. If a user taps an ingredient in a recipe and wants to see where to buy it, the query has to scan every record and match on a text string. The same ingredient appears across many records, one per store, per user submission, potentially per week if multiple people report the same find. That is brittle and leads to inconsistent search results. More critically, it makes the ingredient-to-map link from the recipe detail screen unreliable: tapping "galangal" might surface six different records for the same store depending on how the name was entered.
+My job this week was to refine the wireframes against that structure, specifically the recipe detail screen, which needed to link from an ingredient in a recipe to the map filtered to stores carrying that ingredient. Getting that interaction right required me to actually understand the join path: recipe references ingredients through recipe_ingredients, and store availability is attached to ingredients via ingredient_locations. So the path from a recipe ingredient tap to a filtered map view crosses two joins.
 
-Normalising the model (ingredients as their own table, locations as a join between ingredients and stores) makes the query a clean join and makes the ingredient the stable reference point. The recipe detail link works correctly because ingredients are uniquely identified entities, not duplicated text strings.
+That is not something you can draw correctly without knowing what sits underneath. The wireframe I had from week 8 assumed a flatter structure, and it needed updating once the ERD was finalised.
 
 ![SEAblings ERD showing the full data model for the application](./assets/images/ERD%20SEABLINGS.png)
 
 ## What the data separation revealed about the requirement
 
-Getting to that normalised model forced me to sharpen the requirements statement. The application is not a list of ingredient finds. It is a database of ingredient availability that a community collaboratively maintains. Those sound similar but they have different functional implications.
+Going through the ERD in detail sharpened something I had left vague in the requirements. The application is not a list of ingredient finds. It is a database of ingredient availability that a community collaboratively maintains. Those sound similar but the functional implications are different.
 
-A list of finds grows indefinitely and goes stale at the edges. A database of availability is something that is updated, confirmed, and flagged. The requirement is not "let users submit ingredient finds" but "let users maintain a live map of ingredient availability." The submission form is just the interface for that requirement, not the requirement itself.
+A list of finds grows indefinitely and goes stale at the edges. A database of availability is something that gets updated, confirmed, and flagged. The requirement is not "let users submit ingredient finds" but "let users maintain a live map of ingredient availability." The submission form is just the interface for that requirement.
 
-This distinction changed the scope. If the functional requirement is maintenance rather than submission, then a mechanism for confirming or flagging stale entries is as important as a mechanism for creating new ones. That is an update operation that was not in my wireframes. I added an availability confirmation option to the map pin bottom sheet, a simple thumbs-up that refreshes the "last confirmed" date on an ingredient_location record, because the requirement now explicitly needs it.
+This distinction changes the scope. If the core requirement is maintenance rather than submission, then a mechanism for confirming or flagging stale entries matters as much as the creation flow. I added an availability confirmation option to the map pin bottom sheet — a thumbs-up that refreshes the "last confirmed" date on an ingredient_location record — because the requirement now explicitly needs it.
 
 ![Ingredient and store location relationship in the data model](./assets/images/Ingredients:StoreERD.png)
 
-## The accessibility implication
+## Evaluation plan
 
-This week I also started thinking about the map interaction for users who do not use pointer-based navigation. The map pin model is entirely visual: you see pins, you tap one, you get a bottom sheet. A screen reader user has no way to navigate a map by spatial exploration.
+Natasha finalised the evaluation plan this week. It covers three areas. Usability: think-aloud sessions with three to five South East Asian students, recruited from the target community. Performance: Lighthouse audits targeting under one second load time. Accessibility: WAVE and axe DevTools audits against WCAG 2.1 AA.
 
-The implication is that the ingredient availability data must also be accessible through a non-map interface, a list or a search that returns the same location information. This is not a nice-to-have for accessibility compliance. WCAG 2.1 Success Criterion 2.1.1 (Keyboard) and the broader intent of SC 1.3.3 (Sensory Characteristics) establish that content cannot rely solely on visual position or interaction. The map is the primary interface, but it cannot be the only one.
+The think-aloud method suits this use case because the key interactions (browsing the map, contributing an ingredient find) involve decisions that are hard to observe in silence. A participant who silently completes a task tells you whether the task is completable. A participant who thinks aloud tells you what they expected to find and where they looked first, which is the information that drives interface improvements.
 
-This adds a functional requirement I had not explicitly stated: the list view and the map view are two surfaces for the same data, and both must work independently. The map is the richer experience; the list is the accessible baseline. Planning for that now is cheaper than retrofitting it after implementation.
+## Data responsibility
+
+The group also worked through the privacy and data handling questions that had been left open. Session handling goes through BlaBla Corp's existing login system, which means we are not storing passwords directly. The session cookie is strictly necessary for the app to function, so no consent banner is required under current requirements — unless we add analytics later, at which point that changes.
+
+These are not glamorous decisions but they matter. Getting them wrong at the architecture stage creates legal and ethical problems that are significantly harder to fix after implementation.
+
+## Accessibility implications for the posting flow
+
+I also reviewed the accessibility implications of the posting flow and the colour approach this week. The map pin model is entirely visual: you see pins, you tap one, you get a bottom sheet. A screen reader user cannot navigate a map by spatial exploration.
+
+The implication is that the ingredient availability data must be accessible through a non-map interface as well. This is not optional. WCAG 2.1 SC 2.1.1 (Keyboard) and SC 1.3.3 (Sensory Characteristics) establish that content cannot rely solely on visual position or spatial interaction. The list view and the map view need to be two independent surfaces for the same data. Planning for that now is cheaper than retrofitting it later.
+
+For colour contrast, the warm palette direction I had started sketching needed to be checked against AA thresholds before it was committed. Brown text on cream surfaces passes at the values I was working with, but it is a narrower margin than black-on-white and needs to be tested rather than assumed.
 
 ![Posting flow wireframe showing form structure and bottom navigation](./assets/images/Wireframes%20-%20Post:Profile%20.png)
-
-## What this changed about the wireframes
-
-The posting flow wireframe needed updating once the data model was clear. The submission form for an ingredient find asks for the ingredient (selected from the ingredients table, not free text), the store (with postcode), and an optional description. The controlled vocabulary for ingredients is what makes the search and map filtering reliable. If users can enter "pandan" or "pandan leaves" or "bai toey" as free text, the data fragments immediately.
-
-Requiring users to select from a controlled list is a constraint that feels more limiting in the submission flow than a free-text field, but it is the constraint that makes the rest of the application work.
