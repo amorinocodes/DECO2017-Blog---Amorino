@@ -1,15 +1,11 @@
-<li>
-
-    <a href="{{slug}}.html">{{title}}</a>
-
-    <span class="date">{{date}}</span>
-
-    <span class="author">{{author}}</span>
-
-    <p class="summary">{{summary}}</p>
-
-    <ul class="tags-list">
-        {{tags}}
-    </ul>
-
+<li class="card">
+  <a href="{{slug}}.html" class="card-link">
+    <div class="card-top">
+      <span class="card-emoji">{{emoji}}</span>
+    </div>
+    <div class="card-bottom">
+      <p class="card-date">{{date}}</p>
+      <h2 class="card-title">{{title}}</h2>
+    </div>
+  </a>
 </li>
