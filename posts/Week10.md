@@ -16,7 +16,7 @@ The usual reason for building dummy data is to have something to render during d
 
 The most significant was the question of ingredient granularity. How specific should entries be? Fish sauce is a broad category, but the type and brand matter for Thai cooking. Tiparos Pla Sauce and Megachef fish sauce perform differently in recipes, and a platform that listed them as the same ingredient would not serve cooks who know the difference. At the same time, separating every brand into its own ingredient entry would fragment the map: a single store would generate dozens of pins for products that are functionally related.
 
-![Thai dummy data entries in the SQLite database](./images/week10-dummy-data.png)
+![Thai dummy data entries in the SQLite database](./assets/images/Thai%20SQL%20dummy%20data.png)
 
 The decision I settled on was category-level ingredients (fish sauce, oyster sauce, pandan extract) with brand and product specificity held in the description field on the ingredient_location record. This keeps the search and filter experience coherent at the ingredient level while preserving the nuance that community members actually need. The trade-off is that the description field becomes load-bearing. It is not just a label but part of the usefulness of the data. That has implications for the submission form: the description prompt needs to guide users to enter the right kind of detail, not just an optional note.
 
@@ -50,7 +50,7 @@ Text is where the palette makes its biggest departure from convention. Instead o
 
 The border colour, `#F0D9B5`, is barely darker than the surfaces. It reads as a soft edge rather than a hard boundary, which fits the tactile quality I was aiming for.
 
-![Early SEAblings colour palette and typography explorations](./images/week10-branding-direction.png)
+![Early SEAblings colour palette and typography explorations](./assets/images/Final%20Colour%20Scheme%20of%20App.png)
 
 The palette as a system is deliberate: everything sits within a narrow warm range from cream to cinnamon brown, with the rose and papaya as the only cool-to-vivid exceptions. That constraint is what makes it feel coherent rather than just warm-ish. The risk is that it can flatten contrast if values are not managed carefully, especially on card backgrounds where the surface and the text are both in the brown family.
 
