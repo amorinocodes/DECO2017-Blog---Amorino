@@ -40,6 +40,11 @@ const TAG_EMOJI = {
   DECO2017: "📚",
 };
 
+function getWeekLabel(slug) {
+  const match = slug.match(/^Week(\d+)$/i);
+  return match ? `Wk ${match[1]}` : "";
+}
+
 function getEmoji(tags = []) {
   const tagSet = new Set(tags);
   for (const key of Object.keys(TAG_EMOJI)) {
@@ -130,6 +135,7 @@ const postsHtml = allPosts
       summary: p.data.summary ?? "",
       tags: tagsHtml,
       emoji: getEmoji(p.data.tags),
+      week: getWeekLabel(p.slug),
     });
   })
   .join("");
