@@ -26,7 +26,7 @@ The good news is that the navigation model held up. All participants understood 
 
 The feedback that came up consistently was about card differentiation in the mixed feed. When recipe cards and ingredient-find cards appear in the same grid, some testers were not immediately sure which type they were looking at. The feed toggle exists, but in practice the grid can surface mixed content in certain states, and the visual distinction between card types was not strong enough.
 
-This is a functional requirement I had underspecified. I had assumed the toggle was sufficient disambiguation. The testing showed that card-level visual differentiation is also necessary, not just a stylistic preference but a genuine requirement for the feed to be usable when content types mix.
+This was a functional requirement I'd underspecified. I'd assumed the toggle was sufficient disambiguation. The testing showed that card-level visual differentiation is also necessary, not just a stylistic preference but a genuine requirement for the feed to be usable when content types mix.
 
 ![Festive collections banner on the feed showing seasonal recipes](./assets/images/Festival%20Screen.png)
 
