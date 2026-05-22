@@ -1,24 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>My Blog</title>
-    <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amorino's Blog — DECO2017</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
 
-    <main>
+  <main class="index-main">
 
-        <h1>Amorino's DECO2017 Blog 😎</h1>
-        <p>I am a final year IxD Student who did an advanced studies in compsci! This blog will be an insight
-            into what i got up to during my advanced web design classes.</p>
+    <header class="site-header">
+      <h1 class="site-title">Amorino's Blog <span class="title-accent">✦</span></h1>
+      <p class="site-kicker">DECO2017 · Advanced Web Design · 2026</p>
+      <p class="site-bio">Final year IxD student with a comp sci detour. Running notes on what I built, broke, and figured out this semester.</p>
+    </header>
 
-        <ul class="post-list">
-            {{postList}}
-        </ul>
+    <ul class="post-grid">
+      {{postList}}
+    </ul>
 
-    </main>
+  </main>
 
 </body>
 
