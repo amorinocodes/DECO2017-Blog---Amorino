@@ -1,5 +1,5 @@
 :root {
-  --max-width: 780px;
+  --max-width: 820px;
 
   color-scheme: light dark;
 
@@ -32,6 +32,134 @@ main {
   padding: 3rem 1.5rem 4rem;
 }
 
+.index-main {
+  max-width: 960px;
+}
+
+/* ── Site header ──────────────────────────────────── */
+
+.site-header {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid light-dark(var(--light-border), var(--dark-border));
+  margin-bottom: 2.5rem;
+}
+
+.site-title {
+  font-size: 3.4rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 0.5rem;
+}
+
+.title-accent {
+  color: light-dark(var(--light-accent), var(--dark-accent));
+}
+
+.site-kicker {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: light-dark(var(--light-muted), var(--dark-muted));
+  margin: 0 0 1rem;
+}
+
+.site-bio {
+  font-size: 1rem;
+  color: light-dark(var(--light-muted), var(--dark-muted));
+  margin: 0;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+/* ── Card grid ────────────────────────────────────── */
+
+.post-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  aspect-ratio: 1;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 1px solid light-dark(var(--light-border), var(--dark-border));
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.015);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.14);
+}
+
+.card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-top {
+  flex: 0 0 48%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-emoji {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.card-bottom {
+  flex: 1;
+  padding: 0.9rem 1.1rem 1rem;
+  background: light-dark(var(--light-surface), var(--dark-surface));
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  overflow: hidden;
+}
+
+.card-date {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: light-dark(var(--light-muted), var(--dark-muted));
+  margin: 0;
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+  color: light-dark(var(--light-text), var(--dark-text));
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Colorful card top rotation — light / dark variants */
+.card:nth-child(7n+1) .card-top { background: light-dark(#fff3b0, #3d3500); }
+.card:nth-child(7n+2) .card-top { background: light-dark(#c5b8ff, #1e1840); }
+.card:nth-child(7n+3) .card-top { background: light-dark(#ffbdd8, #3d0c25); }
+.card:nth-child(7n+4) .card-top { background: light-dark(#b5f5e0, #0a3020); }
+.card:nth-child(7n+5) .card-top { background: light-dark(#b3d9ff, #0a2035); }
+.card:nth-child(7n+6) .card-top { background: light-dark(#ffd9b5, #3a2000); }
+.card:nth-child(7n+0) .card-top { background: light-dark(#d5f5b5, #1a3008); }
+
+/* ── Post page ────────────────────────────────────── */
+
 h1 {
   font-size: 2.8rem;
   line-height: 1.1;
@@ -58,26 +186,6 @@ a:hover {
   text-decoration: underline;
 }
 
-ul.post-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 2rem;
-}
-
-ul.post-list li {
-  background: light-dark(var(--light-surface), var(--dark-surface));
-  border: 1px solid light-dark(var(--light-border), var(--dark-border));
-  border-radius: 1rem;
-  padding: 1.2rem 1.25rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-}
-
-ul.post-list li a {
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
 .date,
 .author {
   font-size: 0.85rem;
@@ -85,22 +193,16 @@ ul.post-list li a {
   margin: 0.2rem 0;
 }
 
-span.date::before {
+p.date::before {
   content: "📅 ";
 }
 
-span.author::before {
+p.author::before {
   content: "✍️ ";
 }
 
-p.summary {
-  margin-top: 0.75rem;
-  margin-bottom: 0.8rem;
-  font-size: 0.95rem;
-  color: light-dark(var(--light-muted), var(--dark-muted));
-}
-
 ul.tags-list {
+  list-style: none;
   padding: 0;
   margin: 0.5rem 0 0;
 }
@@ -164,8 +266,20 @@ img {
     font-size: 2.2rem;
   }
 
-  ul.post-list li,
+  .site-title {
+    font-size: 2.4rem;
+  }
+
   article {
     padding: 1rem;
+  }
+
+  .post-grid {
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 1rem;
+  }
+
+  .card-emoji {
+    font-size: 2.8rem;
   }
 }
