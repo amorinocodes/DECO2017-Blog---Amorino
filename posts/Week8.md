@@ -1,49 +1,49 @@
 ---
-title: Wireframes first, code second
+title: "Three wireframe decisions that defined the scope"
 date: 2026-03-16
 author: Amorino Toongart
-summary: How I approached the wireframes for SEAblings and what the modular design lecture changed about how I think about components
+summary: Three specific wireframe decisions (the grid feed, the map bottom sheet, and the three-tab nav) each involved explicit trade-offs between functional requirements, not just layout preferences.
 tags:
   - DECO2017
-  - WebDesign
   - SEAblings
   - Wireframes
+  - Design
 ---
 
-## Where I was at
+## Wireframes as scope decisions
 
-Coming into week 8, the group had settled on the SEAblings concept and I had taken ownership of the wireframe side of the project. My main job this sprint was to translate what we had agreed on in planning into actual screen designs that the rest of the group could build from.
+Wireframing for SEAblings this week forced me to make three decisions I had been leaving implicit during planning. Each one turned out to be as much about scope as about layout. Choosing one pattern over another meant committing to a particular functional priority.
 
-The lecture this week was on modular design and flexible systems, which ended up being very relevant to what I was trying to do, even though wireframing is more of a design task than a code task. The idea of components as self-contained, reusable parts that plug into a shared system is exactly how I was trying to approach the screens. A recipe card on the feed should behave the same way whether it appears in the Pinterest-style grid, in a search result, or as a featured item on the welcome screen. Define it once, use it everywhere.
+## Decision one: grid versus linear feed
 
-## What I actually built
+The recipe and ingredient feed could be a Pinterest-style grid or a linear list. A linear list gives each item more space, more metadata, and a clearer reading order. A grid delivers more content per scroll and prioritises visual browsing. The trade-off is information density against context.
 
-![SEAblings wireframe overview showing all key screens](./assets/images/Wireflow.png)
+I chose the grid for two reasons that come directly from the requirements. First, SEAblings users are primarily browsing to discover something: a dish they want to make, or an ingredient source they did not know existed. They are not reading items sequentially, so a grid suits that better. Second, the feed has a toggle between recipe mode and ingredient-find mode, and both content types have a strong visual component. A grid handles them consistently without requiring a layout shift between modes. The cost is that metadata needs to be highly compressed inside each card, which pushes the information hierarchy harder than a list would.
 
-My wireframe set covers the main user journeys for SEAblings. The key screens I focused on were:
+![SEAblings wireflow showing all key screens and user journeys](./assets/images/Wireflow.png)
 
-The welcome and featured screen, which is the entry point to the app. Rather than dumping users straight into a feed with no context, there is a curated section at the top that surfaces seasonal or popular content first.
+## Decision two: map bottom sheet versus navigation
 
-The feed screen uses a Pinterest-style grid layout. The decision to go with a grid rather than a linear feed came from thinking about how people browse food and dessert content. A grid lets you see more at once, and it suits the visual nature of the content. The feed has a toggle between recipes and ingredient finds so users can switch modes without navigating away.
+When a user taps a pin on the ingredient map, they need store information. I considered two options: navigate to a new detail page, or open a bottom sheet over the map.
 
-The map screen is the core feature. Pins on the map represent store locations for specific ingredients. Tapping a pin opens a bottom sheet rather than navigating to a new page, which keeps the user spatially anchored on the map while they read the details. This interaction pattern came from thinking about how someone would actually use the map while in a suburb, phone in hand, looking for pandan leaves.
+Navigation to a new page breaks the spatial relationship with the map. If someone is on the map looking for a nearby ingredient source, understanding the store's location relative to the current map view is part of the decision. Navigating away removes that context. A bottom sheet keeps the map visible behind the detail panel, which preserves the user's spatial orientation.
 
-The posting flow is accessed through a bottom navigation bar rather than a menu. There are three tabs: Feed, Map, and Profile. Keeping it to three was a deliberate decision to avoid the nav getting cluttered.
+The trade-off is depth. A bottom sheet can only surface a limited amount of information before it needs to scroll, so I had to be fairly ruthless about what it shows: store name, suburb, and an availability confirmation option. Anything more detailed would need a secondary expansion state, which adds interaction complexity. The functional priority here is orientational context over information completeness.
 
-The recipe detail page includes inline linking from ingredients to their store locations on the map. This is the connection that makes the ingredient map feel integrated rather than bolted on.
+This decision also has a data implication. The bottom sheet can surface multiple store options for a single ingredient because ingredient locations are stored in a separate table linked to the ingredient, not embedded in a single record. If the data model had conflated ingredients with their locations, one pin could not show multiple stores without navigating to a separate list.
 
-![Recipe detail wireframe showing inline ingredient to store linking](./assets/images/Wireframes%20-%20Recipies:Ingredients.png)
+## Decision three: three-tab navigation
 
-## Setting up the project board
+The bottom navigation bar has three tabs: Feed, Map, and Profile. The fourth option I considered was adding a dedicated Search tab. I decided against it.
 
-This week I also set up the GitHub project board for the group. We are using it as our ticketing system so that work is visible and distributed clearly. Each ticket can be assigned to me (Amorino), Natasha, or Patricia, and we use the standard columns: backlog, in progress, in review, done.
+Search within Feed and search within Map are structurally different operations. Feed search returns content items. Map search returns geographic results. Combining them in a single Search tab would require disambiguation UI that adds complexity without much clarity. With three tabs, the user always knows which mode they are in. Search lives as a function within each tab rather than a top-level destination.
 
-The reason I wanted to get this sorted in week 8 is that sprint 1 without a proper board was a bit loose. People were working but it was not always clear what was blocked, what was done, or what to pick up next. The board fixes that.
+The principle behind this is that navigation clarity depends on scope clarity. Every tab added to the bar makes the mental model more expensive for a first-time user. Three tabs at this scale is the right trade-off between feature completeness and comprehensibility.
 
-![GitHub project board showing tickets assigned across Amorino, Natasha, and Patricia](./images/week8-project-board.png)
+![Recipe detail wireframe showing inline ingredient-to-map linking](./assets/images/Wireframes%20-%20Recipies:Ingredients.png)
 
-## How the lecture connected
+## What connecting the recipe and map views required
 
-The modular design lecture reinforced something I had already been doing intuitively in the wireframes but had not framed clearly. Design systems define the shared rules that keep components consistent. When I decide what a recipe card looks like, I am effectively making a design system decision, because that card will appear in multiple contexts. If the card is designed once with clear constraints, the person coding it only needs to build it once and can reuse it across the feed, the search results, and the featured section.
+The recipe detail screen needed to link from an ingredient in a recipe to the map, filtered to show only stores carrying that ingredient. Getting this right in the wireframe required actually understanding the data structure underneath it. A recipe references ingredients through a join table, and ingredient locations are attached to ingredients, not to recipes. So the path from a recipe ingredient tap to a filtered map view goes through two joins. That is not something you can draw correctly without knowing what the data model looks like.
 
-The flip side, which the Project Ara example in the lecture made clear, is that modularity is a goal not a guarantee. You can design things to be modular on paper and still end up with components that are tightly coupled in practice. That is a risk we will need to watch as we move into the build.
+This was the first point in the project where the wireframe and the data model had to be designed in parallel rather than sequentially.
