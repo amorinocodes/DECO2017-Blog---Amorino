@@ -47,3 +47,5 @@ The principle behind this is that navigation clarity depends on scope clarity. E
 The recipe detail screen needed to link from an ingredient in a recipe to the map, filtered to show only stores carrying that ingredient. Getting this right in the wireframe required actually understanding the data structure underneath it. A recipe references ingredients through a join table, and ingredient locations are attached to ingredients, not to recipes. So the path from a recipe ingredient tap to a filtered map view goes through two joins. That is not something you can draw correctly without knowing what the data model looks like.
 
 This was the first point in the project where the wireframe and the data model had to be designed in parallel rather than sequentially.
+
+![GitHub project board showing tickets assigned across the group](./images/week8-project-board.png)
