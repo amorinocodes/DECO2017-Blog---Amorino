@@ -1,6 +1,6 @@
 ---
 title: "Revisiting the requirements: what changed and what held"
-date: 2026-04-16
+date: 2026-02-16
 author: Amorino Toongart
 summary: A final-semester look back at the initial requirements analysis, which assumptions proved correct, which needed revision, and what the process of building revealed about what the application actually needed to do.
 tags:
@@ -31,6 +31,8 @@ The first was ingredient granularity. The brief did not specify what level of de
 The second was the moderation and data accuracy requirement. A community-sourced map of ingredient availability is only useful if the data is reasonably accurate and clearly dated. I had not explicitly specified what happens to stale entries, who can flag them, or how the app communicates the community-sourced nature of the data to users. This is not just a UX consideration. It is an ethical one. The application is directing people to physical locations based on reports. Stale or incorrect location data has real-world costs. The confirmation mechanism and flag mechanism I added to the pin bottom sheet were not in the original wireframes, but they should have been.
 
 The third was the list view as an accessibility requirement. I initially designed the ingredient map as the primary interface, with a list view as a secondary option. Understanding WCAG 2.1's requirements for content that relies solely on spatial or visual interaction made the list view a required alternative, not an optional enhancement. The map is the richer experience; the list is the accessible baseline. Both need to be independently functional.
+
+![Requirements evolution from initial analysis to final implementation](./images/webdesign-requirements-evolution.png)
 
 ## What I would do differently
 
