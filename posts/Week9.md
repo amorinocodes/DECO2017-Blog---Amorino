@@ -40,13 +40,13 @@ The think-aloud method suits this use case because the key interactions (browsin
 
 The group also worked through the privacy and data handling questions that had been left open. Session handling goes through BlaBla Corp's existing login system, which means we are not storing passwords directly. The session cookie is strictly necessary for the app to function, so no consent banner is required under current requirements — unless we add analytics later, at which point that changes.
 
-These are not glamorous decisions but they matter. Getting them wrong at the architecture stage creates legal and ethical problems that are significantly harder to fix after implementation.
+Not glamorous decisions, but they matter. Get them wrong early and you end up with legal and ethical problems that are way harder to untangle after the fact.
 
 ## Accessibility implications for the posting flow
 
 I also reviewed the accessibility implications of the posting flow and the colour approach this week. The map pin model is entirely visual: you see pins, you tap one, you get a bottom sheet. A screen reader user cannot navigate a map by spatial exploration.
 
-The implication is that the ingredient availability data must be accessible through a non-map interface as well. This is not optional. WCAG 2.1 SC 2.1.1 (Keyboard) and SC 1.3.3 (Sensory Characteristics) establish that content cannot rely solely on visual position or spatial interaction. The list view and the map view need to be two independent surfaces for the same data. Planning for that now is cheaper than retrofitting it later.
+The implication is that the ingredient availability data must be accessible through a non-map interface as well. This is not optional. WCAG 2.1 SC 2.1.1 (Keyboard) and SC 1.3.3 (Sensory Characteristics) establish that content cannot rely solely on visual position or spatial interaction. The list view and the map view need to be two independent surfaces for the same data. Planning for that now is way cheaper than retrofitting it later.
 
 For colour contrast, the warm palette direction I had started sketching needed to be checked against AA thresholds before it was committed. Brown text on cream surfaces passes at the values I was working with, but it is a narrower margin than black-on-white and needs to be tested rather than assumed.
 
