@@ -16,6 +16,8 @@ The usual reason for building dummy data is to have something to render during d
 
 The most significant was the question of ingredient granularity. How specific should entries be? Fish sauce is a broad category, but the type and brand matter for Thai cooking. Tiparos Pla Sauce and Megachef fish sauce perform differently in recipes, and a platform that listed them as the same ingredient would not serve cooks who know the difference. At the same time, separating every brand into its own ingredient entry would fragment the map: a single store would generate dozens of pins for products that are functionally related.
 
+![Thai dummy data entries in the SQLite database](./images/week10-dummy-data.png)
+
 The decision I settled on was category-level ingredients (fish sauce, oyster sauce, pandan extract) with brand and product specificity held in the description field on the ingredient_location record. This keeps the search and filter experience coherent at the ingredient level while preserving the nuance that community members actually need. The trade-off is that the description field becomes load-bearing. It is not just a label but part of the usefulness of the data. That has implications for the submission form: the description prompt needs to guide users to enter the right kind of detail, not just an optional note.
 
 ## The API dependency problem
@@ -31,6 +33,26 @@ This has an architectural implication. If the list view is genuinely independent
 Treating the list view as a required interface rather than an optional fallback adds scope I had not planned for. But it also provides a useful forcing function: if the ingredient data works in a plain search list, the data model is sound. If the list view cannot produce useful results, the map is hiding a data problem rather than solving a requirement.
 
 The festive collections feature, which surfaces seasonal recipes based on upcoming cultural events, is in a different category. It is a meaningful enhancement to the discovery experience but it is not load-bearing for the core use case. A user who wants to cook a specific dish and find the ingredients does not need the festive collections banner. It is an optional feature that should not receive scope priority over getting the core map and list views working correctly.
+
+## Branding direction
+
+The other thing that came out of this week was a first pass at the colour palette. I had been putting off visual design decisions until the data model was stable, but building the seed data and seeing the app render actual content made the visual direction feel more urgent. Abstract palettes are easy. Palettes that have to work against real content with real hierarchy constraints are harder.
+
+The direction I landed on was built around warmth and familiarity. Southeast Asian home cooking has a particular texture to it. The markets are warm and chaotic, the ingredients are vivid, the cooking is tactile. A palette built on blues and cool neutrals would look clean in a design system but feel wrong in context.
+
+The background is a very soft off-white, closer to condensed milk than to pure white. Warm but not aggressive. `#FDF6EE`. Surfaces layer on top in a slightly more saturated mango cream, `#FAE3B8`, which gives cards and panels a natural warmth without needing a shadow to separate them from the background.
+
+The primary accent is rose milk tea pink, `#E07A8F`. It was the first colour that felt unambiguously right. It is warm, it reads clearly as interactive, and it connects to the drinks and desserts of the region without being literal. Buttons, links, and focus states.
+
+The secondary accent is a papaya orange, `#E8A87C`. This one is used for badges and tags rather than primary actions. It is less assertive than the rose but still carries enough saturation to stand out against the cream surfaces.
+
+Text is where the palette makes its biggest departure from convention. Instead of near-black, body text is a deep reddish cinnamon brown, `#6B4226`. At first that felt risky. Brown text is easy to do badly. But against the cream backgrounds it has enough contrast for legibility while feeling warmer than grey ever would. Headings use the same value. Muted text, labels, and metadata use a lighter version of the same family, `#A0704A`.
+
+The border colour, `#F0D9B5`, is barely darker than the surfaces. It reads as a soft edge rather than a hard boundary, which fits the tactile quality I was aiming for.
+
+![Early SEAblings colour palette and typography explorations](./images/week10-branding-direction.png)
+
+The palette as a system is deliberate: everything sits within a narrow warm range from cream to cinnamon brown, with the rose and papaya as the only cool-to-vivid exceptions. That constraint is what makes it feel coherent rather than just warm-ish. The risk is that it can flatten contrast if values are not managed carefully, especially on card backgrounds where the surface and the text are both in the brown family.
 
 ## API security
 
