@@ -18,9 +18,9 @@ My side of that forced me to make three decisions I had been leaving implicit du
 
 ## Decision one: grid versus linear feed
 
-For my decision I wanted the recipe and ingredient feed to be a Pinterest-style grid or a linear list. A linear list gives each item more space, more metadata, and a clearer reading order. A grid delivers more content per scroll and prioritises visual browsing. The trade-off is information density against context.
+The question here was whether the recipe and ingredient feed should be a Pinterest-style grid or a linear list. A linear list gives each item more space, more metadata, and a clearer reading order. A grid delivers more content per scroll and prioritises visual browsing. The trade-off is information density against context.
 
-I chose the grid for two reasons that come directly from the requirements. First, SEAblings users are primarily browsing to discover something: a dish they want to make, or an ingredient source they did not know existed. They are not reading items sequentially, so a grid suits that better. Second, the feed has a toggle between recipe mode and ingredient-find mode, and both content types have a strong visual component. A grid handles them consistently without requiring a layout shift between modes. The cost is that metadata needs to be highly compressed inside each card, which pushes the information hierarchy harder than a list would.
+Two reasons pushed me toward the grid, and both came directly from the requirements. First, SEAblings users are primarily browsing to discover something: a dish they want to make, or an ingredient source they did not know existed. They are not reading items sequentially, so a grid suits that better. Secondly, the feed has a toggle between recipe mode and ingredient-find mode, and both content types have a strong visual component. A grid handles them consistently without requiring a layout shift between modes. The cost is that metadata needs to be highly compressed inside each card, which pushes the information hierarchy harder than a list would.
 
 ![SEAblings wireflow showing all key screens and user journeys](./assets/images/Wireflow.png)
 
@@ -40,7 +40,7 @@ The bottom navigation bar has three tabs: Feed, Map, and Profile. The fourth opt
 
 Search within Feed and search within Map are structurally different operations. Feed search returns content items. Map search returns geographic results. Combining them in a single Search tab would require disambiguation UI that adds complexity without much clarity. With three tabs, the user always knows which mode they are in. Search lives as a function within each tab rather than a top-level destination.
 
-The principle behind this is that navigation clarity depends on scope clarity. Every tab added to the bar makes the mental model more expensive for a first-time user. Three tabs at this scale is the right trade-off between feature completeness and comprehensibility.
+The thinking was that navigation clarity depends on scope clarity. Every tab added to the bar makes the mental model harder for a first-time user. Three tabs at this scale is the right trade-off between feature completeness and comprehensibility.
 
 ![Recipe detail wireframe showing inline ingredient-to-map linking](./assets/images/Wireframes%20-%20Recipies:Ingredients.png)
 
