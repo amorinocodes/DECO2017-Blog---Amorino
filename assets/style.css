@@ -3,12 +3,12 @@
 
   color-scheme: light dark;
 
-  --light-bg: #fefcf3;
-  --light-surface: #ffffff;
-  --light-text: #1a1a1a;
-  --light-muted: #6b6b78;
-  --light-accent: #5b5ce2;
-  --light-border: #e5e3d8;
+  --light-bg: #fdf6ee;
+  --light-surface: #fae3b8;
+  --light-text: #6b4226;
+  --light-muted: #a0704a;
+  --light-accent: #e07a8f;
+  --light-border: #f0d9b5;
 
   --dark-bg: #0f0f12;
   --dark-surface: #18181d;
@@ -17,7 +17,7 @@
   --dark-accent: #9ea7ff;
   --dark-border: #2a2a34;
 
-  --grid-line: rgba(0, 0, 120, 0.055);
+  --grid-line: rgba(107, 66, 38, 0.07);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -174,10 +174,29 @@ main {
 }
 
 .card-top {
+  position: relative;
   flex: 0 0 48%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.card-week {
+  position: absolute;
+  top: 10px;
+  right: 11px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: rgba(224, 122, 143, 0.22);
+  color: #c0566a;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.card-week:empty {
+  display: none;
 }
 
 .card-emoji {
@@ -216,14 +235,14 @@ main {
   overflow: hidden;
 }
 
-/* Colorful card top rotation */
-.card:nth-child(7n+1) .card-top { background: light-dark(#fff3b0, #3d3500); }
-.card:nth-child(7n+2) .card-top { background: light-dark(#c5b8ff, #1e1840); }
-.card:nth-child(7n+3) .card-top { background: light-dark(#ffbdd8, #3d0c25); }
-.card:nth-child(7n+4) .card-top { background: light-dark(#b5f5e0, #0a3020); }
-.card:nth-child(7n+5) .card-top { background: light-dark(#b3d9ff, #0a2035); }
-.card:nth-child(7n+6) .card-top { background: light-dark(#ffd9b5, #3a2000); }
-.card:nth-child(7n+0) .card-top { background: light-dark(#d5f5b5, #1a3008); }
+/* Colorful card top rotation — warm SEAblings palette */
+.card:nth-child(7n+1) .card-top { background: light-dark(#fff0c0, #3d2e00); } /* turmeric */
+.card:nth-child(7n+2) .card-top { background: light-dark(#ffd6de, #3d0c1c); } /* rose milk tea */
+.card:nth-child(7n+3) .card-top { background: light-dark(#ffe4cc, #3a1e00); } /* papaya */
+.card:nth-child(7n+4) .card-top { background: light-dark(#d4f0e0, #0a2e1a); } /* pandan */
+.card:nth-child(7n+5) .card-top { background: light-dark(#edd9ff, #261040); } /* ube */
+.card:nth-child(7n+6) .card-top { background: light-dark(#c8e8f5, #082030); } /* lychee sky */
+.card:nth-child(7n+0) .card-top { background: light-dark(#fae3b8, #2e1c00); } /* mango cream */
 
 /* ── Post page ────────────────────────────────────── */
 
@@ -291,9 +310,9 @@ ul.tags-list li {
 
 span.tag {
   display: inline-block;
-  border: 1px solid light-dark(var(--light-border), var(--dark-border));
-  background: light-dark(#f1f1ff, #222232);
-  color: light-dark(var(--light-accent), var(--dark-accent));
+  border: 1px solid light-dark(#f0d9b5, var(--dark-border));
+  background: light-dark(#fef0e2, #2e1c0a);
+  color: light-dark(#b85c2a, #e8a87c);
   border-radius: 999px;
   padding: 0.25rem 0.65rem;
   margin: 0.15rem 0.3rem 0.15rem 0;
