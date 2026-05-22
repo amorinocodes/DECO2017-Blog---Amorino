@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/a11y-light.min.css" media="(prefers-color-scheme: light)">
@@ -11,17 +13,18 @@
 <body>
 
     <main>
+        <a href="index.html" class="back-link">← All posts</a>
+
         <h1>{{title}}</h1>
         <p class="date">{{date}}</p>
         <p class="author">{{author}}</p>
 
         <hr>
+
         <article>
-
-            <!-- BLOG CONTENT INSERTED HERE -->
             {{content}}
-
         </article>
+
         <hr>
 
         <footer>
@@ -29,6 +32,8 @@
                 {{tags}}
             </ul>
         </footer>
+
+        {{postNav}}
 
     </main>
 
