@@ -87,16 +87,16 @@ for (const file of fs.readdirSync(POSTS_DIR)) {
   allPosts.push({ data, html, slug });
 }
 
-/* Sort newest first */
-allPosts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+/* Sort oldest first */
+allPosts.sort((a, b) => new Date(a.data.date) - new Date(b.data.date));
 
 /* Render each post with prev/next */
 const postTemplate = fs.readFileSync("templates/post.html", "utf8");
 
 for (let i = 0; i < allPosts.length; i++) {
   const { data, html, slug } = allPosts[i];
-  const prev = allPosts[i + 1] || null;
-  const next = allPosts[i - 1] || null;
+  const prev = allPosts[i - 1] || null;
+  const next = allPosts[i + 1] || null;
 
   const tagsHtml =
     data.tags?.map((tag) => `<span class="tag">${tag}</span>`).join("") ?? "";
