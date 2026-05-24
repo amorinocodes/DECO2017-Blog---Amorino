@@ -1,6 +1,6 @@
 ---
-title: "What building the seed database revealed"
-date: 2026-03-30
+title: "Planting the Seed"
+date: 2026-05-08
 author: Amorino Toongart
 summary: Building the Thai dummy data turned out to be a form of requirements testing. Ingredient granularity was a design decision I had left open, and the API dependency issue changed how I think about the map's role in the app.
 tags:
