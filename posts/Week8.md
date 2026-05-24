@@ -1,6 +1,6 @@
 ---
-title: "Three wireframe decisions that defined the scope"
-date: 2026-03-16
+title: "Three Musketeers"
+date: 2026-04-24
 author: Amorino Toongart
 summary: Three specific wireframe decisions (the grid feed, the map bottom sheet, and the three-tab nav) each involved explicit trade-offs between functional requirements, not just layout preferences.
 tags:
@@ -58,6 +58,6 @@ I also set up the GitHub project board this week with tickets distributed across
 
 ## Early visual direction
 
-Alongside the structural work, I started putting together some visual references for the app's aesthetic direction. Nothing committed at this stage — more of a moodboard to get a feel for the palette and tone before any UI work begins. The direction I was drawn to was warm and tactile, closer to a Southeast Asian market or home kitchen than a clean SaaS product.
+Alongside the structural work, I started putting together some visual references for the app's aesthetic direction. Nothing committed at this stage but more of a moodboard to get a feel for the palette and tone before any UI work begins. The direction I was drawn to was warm and tactile, closer to a Southeast Asian market or home kitchen than a clean SaaS product.
 
 ![Brand identity inspiration and early visual direction for SEAblings](./assets/images/Images%20of%20Brand%20idenity%20inspiration.png)
