@@ -1,6 +1,6 @@
 ---
-title: "Testing from the couch"
-date: 2026-04-06
+title: "Work from Home"
+date: 2026-05-15
 author: Amorino Toongart
 summary: Before testing, I had to define what done looked like. The session validated the three-tab navigation and revealed an underspecified requirement about feed disambiguation. This post also sets out the formal evaluation plan.
 tags:
