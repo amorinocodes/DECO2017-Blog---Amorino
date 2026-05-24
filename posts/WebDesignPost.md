@@ -12,7 +12,7 @@ tags:
 
 The BlaBla Corp brief is about building a "community hub" where users with shared interests can connect through content and interaction. Rather than just building a generic social platform, the focus is on **what gets shared and how the experience keeps users engaged**.
 
-That means success isn't just about features — it's about how well the app actually supports interaction within a specific community.
+That means success isn't just about features but it's about how well the app actually supports interaction within a specific community.
 
 ## Initial Direction
 
