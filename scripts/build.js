@@ -134,7 +134,7 @@ const postsHtml = allPosts
       date: format(new Date(p.data.date), "yyyy-MM-dd"),
       summary: p.data.summary ?? "",
       tags: tagsHtml,
-      emoji: getEmoji(p.data.tags),
+      emoji: p.data.emoji ?? getEmoji(p.data.tags),
       week: getWeekLabel(p.slug),
       cardClass: p.data.featured ? "card--featured" : "",
     });
