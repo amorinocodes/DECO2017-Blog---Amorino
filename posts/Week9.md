@@ -3,6 +3,7 @@ title: "He thinks he's the Thinker"
 date: 2026-05-01
 author: Amorino Toongart
 summary: Working from finalised ERD revealed a requirement that had been implicit in the wireframes. This week also brought the evaluation plan together and surfaced some privacy decisions the group had not explicitly made yet.
+emoji: "🧠"
 tags:
   - DECO2017
   - SEAblings
