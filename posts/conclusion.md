@@ -13,7 +13,7 @@ tags:
   - Accessibility
 ---
 
-and That's all folks! Advanced Web Design has come to an end and while I am pleased to now be entering a break I will miss this class and all the things we did! Here is my final reflection on SEAblings and how we went!
+And That's all folks! Advanced Web Design has come to an end and while I am pleased to now be entering a break I will miss this class and all the things we did! Here is my final reflection on SEAblings and how we went!
 
 ## Performance
 
@@ -68,7 +68,7 @@ and That's all folks! Advanced Web Design has come to an end and while I am plea
 
 We ran a Lighthouse audit which returned a performance score of 91, which we were pleased with. First Contentful Paint came in at 0.5 seconds, Speed Index matched it, and Total Blocking Time was 0 milliseconds. These results reflect decisions made early in the project — HTMX handles partial page updates rather than full re-renders, and SQLite responds quickly at prototype scale. The architecture choices paid off in ways that are measurable.
 
-The one metric that dragged the score down was Largest Contentful Paint at 2.0 seconds. The audit also flagged that 81.6% of the CSS file goes unused on the homepage, and 83.6% of the HTMX library goes unused on any given page. Both are consequences of writing one shared stylesheet across all pages — a pragmatic call for a small team moving quickly, but one I would revisit with more time. Code splitting or deferred loading would bring LCP down without touching anything structural.
+The one metric that dragged the score down was Largest Contentful Paint at 2.0 seconds. The audit also flagged that 81.6% of the CSS file goes unused on the homepage, and 83.6% of the HTMX library goes unused on any given page. Both are consequences of writing one shared stylesheet across all pages, a pragmatic call for a small team moving quickly, but one I would revisit with more time. Code splitting or deferred loading would bring LCP down without touching anything structural.
 
 The Best Practices score of 78 was flagged because the app runs over HTTP rather than HTTPS at the time of testing, a direct result of auditing against a local development server that would resolve automatically in production.
 
@@ -82,13 +82,17 @@ The Best Practices score of 78 was flagged because the app runs over HTTP rather
 
 ## User Experience
 
-We ran two think-aloud sessions across three tasks: browsing the feed, posting a recipe, and finding an ingredient on the map. P1 completed all three tasks but surfaced three issues — CTA hierarchy confusion, an icon-heavy interface that made action buttons hard to distinguish, and a "post a tip" destination that felt unexpected. P1 rated the app 3 out of 5. P2 completed all tasks independently and rated it 5 out of 5, though that result is worth reading carefully. P2 appeared comfortable with technology and moved through the interface with a confidence that may not reflect the broader target audience, making the score more a reflection of prior experience than a clean validation of the design.
+We ran two think-aloud sessions across three tasks: browsing the feed, posting a recipe, and finding an ingredient on the map. P1 completed all three tasks but surfaced three issues. CTA hierarchy confusion, an icon-heavy interface that made action buttons hard to distinguish, and a "post a tip" destination that felt unexpected. P1 rated the app 3 out of 5. P2 completed all tasks independently and rated it 5 out of 5, though that result is worth reading carefully. P2 appeared comfortable with technology and moved through the interface with a confidence that may not reflect the broader target audience, making the score more a reflection of prior experience than a clean validation of the design.
+
+![](<assets/images/Image of P1 User Testing.HEIC>)
+
+![](<assets/images/Image of P2 User Testing.HEIC>)
 
 Following testing we acted on all three issues before running the audit. CTA hierarchy was revised, the icon to text balance was adjusted, and the post a tip destination was redirected. Festival cards were also updated with images, making them considerably more legible. The accessibility score of 87 reflects the app after these changes.
 
 ![](<assets/images/Feeddpage, Final page I really like look of.png>)
 
-The contrast failures that remained are a direct consequence of the palette I chose. Rose milk tea works as a decorative accent but does not carry readable text when used as a background — the active nav link sits at a contrast ratio of 2.83:1 against a required 4.5:1. The touch target failures on the "Find ingredients" and "Post yours" card links, measuring 21.8px against a 24px minimum, connect directly to P1's confusion at those same interaction points.
+The contrast failures that remained are a direct consequence of the palette I chose. Rose milk tea works as a decorative accent but does not carry readable text when used as a background. The active nav link sits at a contrast ratio of 2.83:1 against a required 4.5:1. The touch target failures on the "Find ingredients" and "Post yours" card links, measuring 21.8px against a 24px minimum, connect directly to P1's confusion at those same interaction points.
 
 ![](<assets/images/No ingredient yet, post a tip pop up.png>)
 
@@ -118,6 +122,6 @@ The ingredient map had a similar gap. We specified that users could find ingredi
 
 ## Looking Back
 
-SEAblings is not the application I pictured at the start of semester, and I mean that in both directions. Some things turned out better than I expected — the visual identity feels genuinely considered, the performance held up under audit, and the team produced something coherent under real constraints. Other things fell short of what I had imagined, and the gap between the depth of interactivity we planned and what we shipped is something I will carry into the next project.
+SEAblings is not the application I pictured at the start of semester, and I mean that in both directions. Some things turned out better than I expected, the visual identity feels genuinely considered, the performance held up under audit, and the team produced something coherent under real constraints. Other things fell short of what I had imagined, and the gap between the depth of interactivity we planned and what we shipped is something I will carry into the next project.
 
-Overall this class was a very rewarding experience. I want to thank Joel for being such a cool tutor and my group mates Natasha and Patricia for putting up with me and getting the job done together. I learned a lot about the behind the scenes and the actual functionality of creating a website, I improved my teamwork and after this course am confident in web design and hope to use what I learned in the workforce in the future. And who knows, maybe during the holidays we get SEAblings up and running again — I know I want to cook some more Southeast Asian food while on break!
+Overall this class was a very rewarding experience. I want to thank Joel for being such a cool tutor and my group mates Natasha and Patricia for putting up with me and getting the job done together. I learned a lot about the behind the scenes and the actual functionality of creating a website, I improved my teamwork and after this course am confident in web design and hope to use what I learned in the workforce in the future. And who knows, maybe during the holidays we get SEAblings up and running again because I know I want to cook some more Southeast Asian food while on break!
