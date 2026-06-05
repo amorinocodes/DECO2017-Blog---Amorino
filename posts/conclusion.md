@@ -1,6 +1,6 @@
 ---
 title: "That's all folks!"
-date: 2026-06-09
+date: 2026-06-05
 author: Amorino Toongart
 summary: A final reflection on SEAblings covering performance, user experience, functional requirements, and lessons learned across the semester.
 featured: true
