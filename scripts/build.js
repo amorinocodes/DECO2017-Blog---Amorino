@@ -135,7 +135,7 @@ const postsHtml = allPosts
       summary: p.data.summary ?? "",
       tags: tagsHtml,
       emoji: p.data.emoji ?? getEmoji(p.data.tags),
-      week: getWeekLabel(p.slug),
+      week: p.data.week ?? getWeekLabel(p.slug),
       cardClass: p.data.featured ? "card--featured" : "",
     });
   })
