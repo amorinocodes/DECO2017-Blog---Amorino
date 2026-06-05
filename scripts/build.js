@@ -136,6 +136,7 @@ const postsHtml = allPosts
       tags: tagsHtml,
       emoji: getEmoji(p.data.tags),
       week: getWeekLabel(p.slug),
+      cardClass: p.data.featured ? "card--featured" : "",
     });
   })
   .join("");
