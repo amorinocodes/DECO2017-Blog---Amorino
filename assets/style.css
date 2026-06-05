@@ -244,6 +244,46 @@ main {
 .card:nth-child(7n+6) .card-top { background: light-dark(#c8e8f5, #082030); } /* lychee sky */
 .card:nth-child(7n+0) .card-top { background: light-dark(#fae3b8, #2e1c00); } /* mango cream */
 
+/* ── Featured (conclusion) card ──────────────────── */
+
+.card--featured {
+  aspect-ratio: unset;
+  grid-row: span 2;
+  grid-column: -2 / -1;
+  min-height: 460px;
+}
+
+.card--featured .card-top {
+  flex: 1;
+}
+
+.card--featured .card-emoji {
+  font-size: 5rem;
+}
+
+.card--featured .card-bottom {
+  flex: 0 0 auto;
+  padding: 1.2rem 1.3rem 1.3rem;
+}
+
+.card--featured .card-title {
+  font-size: 1.1rem;
+  -webkit-line-clamp: unset;
+}
+
+@media (max-width: 600px) {
+  .card--featured {
+    aspect-ratio: 1;
+    grid-row: span 1;
+    grid-column: auto;
+    min-height: unset;
+  }
+
+  .card--featured .card-emoji {
+    font-size: 3.5rem;
+  }
+}
+
 /* ── Post page ────────────────────────────────────── */
 
 .back-link {
