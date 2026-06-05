@@ -4,6 +4,7 @@ date: 2026-06-09
 author: Amorino Toongart
 summary: A final reflection on SEAblings covering performance, user experience, functional requirements, and lessons learned across the semester.
 featured: true
+emoji: "🐷"
 tags:
   - DECO2017
   - SEAblings
