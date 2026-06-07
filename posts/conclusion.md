@@ -85,9 +85,9 @@ The Best Practices score of 78 was flagged because the app runs over HTTP rather
 
 We ran two think-aloud sessions across three tasks: browsing the feed, posting a recipe, and finding an ingredient on the map. P1 completed all three tasks but surfaced three issues. CTA hierarchy confusion, an icon-heavy interface that made action buttons hard to distinguish, and a "post a tip" destination that felt unexpected. P1 rated the app 3 out of 5. P2 completed all tasks independently and rated it 5 out of 5, though that result is worth reading carefully. P2 appeared comfortable with technology and moved through the interface with a confidence that may not reflect the broader target audience, making the score more a reflection of prior experience than a clean validation of the design.
 
-![](<assets/images/Image of P1 User Testing.HEIC>)
+![](<assets/images/P1 Testing.png>)
 
-![](<assets/images/Image of P2 User Testing.HEIC>)
+![](<assets/images/P2 Testing.png>)
 
 Following testing we acted on all three issues before running the audit. CTA hierarchy was revised, the icon to text balance was adjusted, and the post a tip destination was redirected. Festival cards were also updated with images, making them considerably more legible. The accessibility score of 87 reflects the app after these changes.
 
