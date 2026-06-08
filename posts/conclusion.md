@@ -127,4 +127,4 @@ SEAblings is not the application I pictured at the start of semester, and I mean
 
 Overall this class was a very rewarding experience. I want to thank Joel for being such a cool tutor and my group mates Natasha and Patricia for putting up with me and getting the job done together. I learned a lot about the behind the scenes and the actual functionality of creating a website, I improved my teamwork and after this course am confident in web design and hope to use what I learned in the workforce in the future. And who knows, maybe during the holidays we get SEAblings up and running again because I know I want to cook some more Southeast Asian food while on break!
 
-![](<assets/images/Chocojelly group.png>)
+![](<assets/images/SEABLINGS Group.png>)
