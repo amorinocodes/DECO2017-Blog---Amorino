@@ -52,17 +52,17 @@ main {
   margin-bottom: 2.5rem;
 }
 
-.site-header-inner {
+.site-title-row {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 1rem;
 }
 
 .site-logo {
-  height: 80px;
+  height: 40px;
   width: auto;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .site-title {
@@ -240,6 +240,7 @@ main {
   color: light-dark(var(--light-text), var(--dark-text));
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -319,6 +320,7 @@ main {
   font-weight: 900;
   line-height: 1.15;
   -webkit-line-clamp: unset;
+  line-clamp: unset;
   overflow: visible;
 }
 
