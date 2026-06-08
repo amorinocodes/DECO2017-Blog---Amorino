@@ -67,7 +67,7 @@ And That's all folks! Advanced Web Design has come to an end and while I am plea
   </div>
 </div>
 
-We ran a Lighthouse audit which returned a performance score of 91, which we were pleased with. First Contentful Paint came in at 0.5 seconds, Speed Index matched it, and Total Blocking Time was 0 milliseconds. These results reflect decisions made early in the project — HTMX handles partial page updates rather than full re-renders, and SQLite responds quickly at prototype scale. The architecture choices paid off in ways that are measurable.
+We ran a Lighthouse audit which returned a performance score of 91, which we were pleased with. First Contentful Paint came in at 0.5 seconds, Speed Index matched it, and Total Blocking Time was 0 milliseconds. These results reflect decisions made early in the project. HTMX handles partial page updates rather than full re-renders, and SQLite responds quickly at prototype scale. The architecture choices paid off in ways that are measurable.
 
 The one metric that dragged the score down was Largest Contentful Paint at 2.0 seconds. The audit also flagged that 81.6% of the CSS file goes unused on the homepage, and 83.6% of the HTMX library goes unused on any given page. Both are consequences of writing one shared stylesheet across all pages, a pragmatic call for a small team moving quickly, but one I would revisit with more time. Code splitting or deferred loading would bring LCP down without touching anything structural.
 
@@ -113,9 +113,9 @@ If I had more time the first priority would be the open store search flow, conne
 
 All four core requirements from A1 shipped: recipe feed, recipe posting, ingredient finder map, and user profiles. But shipping a feature and fulfilling a requirement are not always the same thing.
 
-The requirements were well defined at a surface level. What they did not capture was the depth of experience within each feature. Recipe navigation is the clearest example — the feed works and basic filtering exists, but users cannot move between related recipes or explore by ingredient the way a genuine community platform would support. The requirement was written at a surface level and we built to that surface level.
+The requirements were well defined at a surface level. What they did not capture was the depth of experience within each feature. Recipe navigation is the clearest example, the feed works and basic filtering exists, but users cannot move between related recipes or explore by ingredient the way a genuine community platform would support. The requirement was written at a surface level and we built to that surface level.
 
-The ingredient map had a similar gap. We specified that users could find ingredient locations but never defined what happens when no community entries exist yet for a given ingredient. That edge case only became visible in use. The post a tip concept shifted most significantly — what started as a lighter contribution mechanic was rescoped after testing revealed the destination felt unclear. That ambiguity should have been resolved in the requirement, not during development.
+The ingredient map had a similar gap. We specified that users could find ingredient locations but never defined what happens when no community entries exist yet for a given ingredient. That edge case only became visible in use. The post a tip concept shifted most significantly. What started as a lighter contribution mechanic was rescoped after testing revealed the destination felt unclear. That ambiguity should have been resolved in the requirement, not during development.
 
 ![](<assets/images/Profile Page.png>)
 
